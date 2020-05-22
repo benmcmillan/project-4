@@ -1,7 +1,13 @@
   //jshint esversion: 6
 
+
 let controller = function() {
 
+let deleteComments = function(){
+    localStorage.setItem("toDoList", "<p><b>2do List</b></p><p>Get started on P4 early.</p><p>Start Reviewing for the Final</p><p>Summer is Soon!</p>");
+    $(".comments").html(localStorage.getItem("toDoList"));
+    console.log("yeet");
+  };
 
   let addCommentFromInputBox = function() {
     //Semmy uses "$" to name variables that will contain jQuery objects
@@ -31,12 +37,18 @@ let controller = function() {
     }
   });
 
-if (window.localStorage != "") {
-  return $(".comments").html(localStorage.getItem("toDoList")) ;
+  $(".button2").on("click", function(event) {
+    deleteComments();
+  });
+
+
+if (window.localStorage !== null && window.localStorage.toDoList !== null) {
+  $(".comments").html(localStorage.getItem("toDoList"));
 }
 else {
-  return null;
-
+  localStorage.setItem("toDoList", "");
+  return;
 }};
+
 
 $(document).ready(controller);
